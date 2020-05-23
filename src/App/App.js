@@ -10,7 +10,8 @@ import AddNote from "../AddNote/AddNote";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import "./App.css";
-//testing comment for github
+//testing comment for new repo in github
+
 class App extends Component {
   state = {
     notes: [],
