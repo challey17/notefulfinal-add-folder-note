@@ -10,7 +10,8 @@ import AddNote from "../AddNote/AddNote";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import "./App.css";
-//testing comment for new repo in github
+//form validation
+// errror boundarys around forms to handle api/network errors, display message
 
 class App extends Component {
   state = {
