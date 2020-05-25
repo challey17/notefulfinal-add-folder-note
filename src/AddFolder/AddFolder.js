@@ -3,7 +3,6 @@ import NotefulForm from "../NotefulForm/NotefulForm";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import "./AddFolder.css";
-import ErrorBoundary from "../ErrorBoundary";
 
 export default class AddFolder extends Component {
   constructor(props) {
@@ -57,24 +56,23 @@ export default class AddFolder extends Component {
     return (
       <section className="AddFolder">
         <h2>Create a folder</h2>
-        <ErrorBoundary>
-          <NotefulForm onSubmit={this.handleSubmit}>
-            <div className="field">
-              <label htmlFor="folder-name-input">Name</label>
-              <input
-                type="text"
-                id="folder-name-input"
-                name="folder-name"
-                onChange={(e) => this.updateName(e.target.value)}
-              />
-            </div>
-            <div className="buttons">
-              <button type="submit" disabled={!this.state.name.touched}>
-                Add folder
-              </button>
-            </div>
-          </NotefulForm>
-        </ErrorBoundary>
+
+        <NotefulForm onSubmit={this.handleSubmit}>
+          <div className="field">
+            <label htmlFor="folder-name-input">Name</label>
+            <input
+              type="text"
+              id="folder-name-input"
+              name="folder-name"
+              onChange={(e) => this.updateName(e.target.value)}
+            />
+          </div>
+          <div className="buttons">
+            <button type="submit" disabled={!this.state.name.touched}>
+              Add folder
+            </button>
+          </div>
+        </NotefulForm>
       </section>
     );
   }

@@ -10,8 +10,7 @@ import AddNote from "../AddNote/AddNote";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import "./App.css";
-//form validation
-// errror boundarys around forms to handle api/network errors, display message
+import ErrorBoundary from "../ErrorBoundary";
 
 class App extends Component {
   state = {
@@ -35,14 +34,18 @@ class App extends Component {
         this.setState({ notes, folders });
       })
       .catch((error) => {
-        console.error({ error });
+        this.setState({ error });
       });
   }
-
+  // trying to implement try catch for error bundary
   handleAddFolder = (folder) => {
-    this.setState({
-      folders: [...this.state.folders, folder],
-    });
+    try {
+      this.setState({
+        folders: [...this.state.folders, folder],
+      });
+    } catch (error) {
+      this.setState({ hasError: true });
+    }
   };
 
   handleAddNote = (note) => {
@@ -92,18 +95,20 @@ class App extends Component {
       deleteNote: this.handleDeleteNote,
     };
     return (
-      <ApiContext.Provider value={value}>
-        <div className="App">
-          <nav className="App__nav">{this.renderNavRoutes()}</nav>
-          <header className="App__header">
-            <h1>
-              <Link to="/">Noteful</Link>{" "}
-              <FontAwesomeIcon icon="check-double" />
-            </h1>
-          </header>
-          <main className="App__main">{this.renderMainRoutes()}</main>
-        </div>
-      </ApiContext.Provider>
+      <ErrorBoundary>
+        <ApiContext.Provider value={value}>
+          <div className="App">
+            <nav className="App__nav">{this.renderNavRoutes()}</nav>
+            <header className="App__header">
+              <h1>
+                <Link to="/">Noteful</Link>{" "}
+                <FontAwesomeIcon icon="check-double" />
+              </h1>
+            </header>
+            <main className="App__main">{this.renderMainRoutes()}</main>
+          </div>
+        </ApiContext.Provider>
+      </ErrorBoundary>
     );
   }
 }
