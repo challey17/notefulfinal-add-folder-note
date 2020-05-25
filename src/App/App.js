@@ -34,30 +34,40 @@ class App extends Component {
         this.setState({ notes, folders });
       })
       .catch((error) => {
-        this.setState({ error });
+        this.setState({ hasError: true });
       });
   }
-  // trying to implement try catch for error bundary
+  // try catch for error bundary in event handlers
   handleAddFolder = (folder) => {
     try {
       this.setState({
         folders: [...this.state.folders, folder],
       });
     } catch (error) {
-      this.setState({ hasError: true });
+      //also tried this.setState({hasError: true}) for error boundary
+      // but it didn't work
+      this.setState({ error });
     }
   };
 
   handleAddNote = (note) => {
-    this.setState({
-      notes: [...this.state.notes, note],
-    });
+    try {
+      this.setState({
+        notes: [...this.state.notes, note],
+      });
+    } catch (error) {
+      this.setState({ hasError: true });
+    }
   };
 
   handleDeleteNote = (noteId) => {
-    this.setState({
-      notes: this.state.notes.filter((note) => note.id !== noteId),
-    });
+    try {
+      this.setState({
+        notes: this.state.notes.filter((note) => note.id !== noteId),
+      });
+    } catch (error) {
+      this.setState({ hasError: true });
+    }
   };
 
   renderNavRoutes() {
