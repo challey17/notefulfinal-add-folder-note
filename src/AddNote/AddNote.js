@@ -4,6 +4,7 @@ import ApiContext from "../ApiContext";
 import config from "../config";
 import "./AddNote.css";
 import ValidationError from "../ValidationError";
+import PropTypes from "prop-types";
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -143,3 +144,8 @@ export default class AddNote extends Component {
     );
   }
 }
+
+AddNote.propTypes = {
+  history: PropTypes.object,
+  push: PropTypes.func,
+};

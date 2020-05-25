@@ -3,6 +3,7 @@ import NotefulForm from "../NotefulForm/NotefulForm";
 import ApiContext from "../ApiContext";
 import config from "../config";
 import "./AddFolder.css";
+import PropTypes from "prop-types";
 
 export default class AddFolder extends Component {
   constructor(props) {
@@ -77,3 +78,8 @@ export default class AddFolder extends Component {
     );
   }
 }
+
+AddFolder.propTypes = {
+  history: PropTypes.object,
+  push: PropTypes.func,
+};

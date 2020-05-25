@@ -34,12 +34,10 @@ class App extends Component {
         this.setState({ notes, folders });
       })
       .catch((error) => {
-        //also tried this.setState({hasError: true}) for error boundary
-        // but it didn't work
         this.setState({ error });
       });
   }
-  // try catch for error bundary in event handlers
+  // try catch for error in event handlers
   handleAddFolder = (folder) => {
     try {
       this.setState({
