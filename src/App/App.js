@@ -34,7 +34,9 @@ class App extends Component {
         this.setState({ notes, folders });
       })
       .catch((error) => {
-        this.setState({ hasError: true });
+        //also tried this.setState({hasError: true}) for error boundary
+        // but it didn't work
+        this.setState({ error });
       });
   }
   // try catch for error bundary in event handlers
@@ -44,9 +46,7 @@ class App extends Component {
         folders: [...this.state.folders, folder],
       });
     } catch (error) {
-      //also tried this.setState({hasError: true}) for error boundary
-      // but it didn't work
-      this.setState({ error });
+      this.setState({ hasError: true });
     }
   };
 
