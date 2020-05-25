@@ -104,6 +104,9 @@ class App extends Component {
       addNote: this.handleAddNote,
       deleteNote: this.handleDeleteNote,
     };
+    if (this.state.error) {
+      return <h1>Something went wrong.</h1>;
+    }
     return (
       <ErrorBoundary>
         <ApiContext.Provider value={value}>
