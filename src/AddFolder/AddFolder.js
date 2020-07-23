@@ -29,9 +29,10 @@ export default class AddFolder extends Component {
   static contextType = ApiContext;
 
   handleSubmit = (e) => {
+    const { name } = this.state;
     e.preventDefault();
     const folder = {
-      name: e.target["folder-name"].value,
+      folder_name: name.value,
     };
     fetch(`${config.API_ENDPOINT}/folders`, {
       method: "POST",
